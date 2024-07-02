@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 183109481}
-  - component: {fileID: 183109482}
   m_Layer: 5
   m_Name: Grid
   m_TagString: Untagged
@@ -159,27 +158,6 @@ RectTransform:
   m_AnchoredPosition: {x: -58, y: 57}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &183109482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 183109480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93c02a24c73a41446aac7fb0bcfd103a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockPrefabs:
-  - {fileID: 157646587686478162, guid: 545f33afd4927344183f24e73fd4906d, type: 3}
-  - {fileID: 157646587686478162, guid: 7fa1c570f0bfd51468518d4d364f9a43, type: 3}
-  - {fileID: 157646587686478162, guid: 855eee1cf1997b349a32fe221ad07597, type: 3}
-  - {fileID: 157646587686478162, guid: cef74d08bb3c9a44ab2df55082902e8e, type: 3}
-  - {fileID: 157646587686478162, guid: 09869c37ccf9ab6449522e2045716411, type: 3}
-  rows: 5
-  columns: 5
-  blockSpacing: 5
 --- !u!1 &260361877
 GameObject:
   m_ObjectHideFlags: 0
