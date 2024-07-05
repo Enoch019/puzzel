@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BoardScript : MonoBehaviour
 {
+    public Dictionary<Vector2, GameObject> GemDict = new Dictionary<Vector2, GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
