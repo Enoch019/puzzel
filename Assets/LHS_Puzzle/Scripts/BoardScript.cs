@@ -5,16 +5,32 @@ using UnityEngine;
 public class BoardScript : MonoBehaviour
 {
     public Dictionary<Vector2, GameObject> GemDict = new Dictionary<Vector2, GameObject>();
+    public List<GameObject> GemLists = new List<GameObject>();
+    public Transform Board;
 
-    // Start is called before the first frame update
+    public int Rows = 5;
+    public int Cols = 5;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
+
+    void SpawnGems()
+    {
+        for(int i = 0; i < Rows; i++)
+        {
+            for(int j = 0; j < Cols; j++)
+            {
+                GemDict.Add(new Vector2(i, j), null);
+            }
+        }
+
+    }
+    
 }
