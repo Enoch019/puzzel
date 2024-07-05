@@ -1,18 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class GemScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("정보")] public string gemName;
+
+    public enum GemType
     {
-        
+        Fire = 0,
+        Water = 1,
+        Land = 2,
+        Grass = 3,
+        Elec = 4
     }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private List<Sprite> _sprites;
+
+    //랜덤값으로 할당 필요 
+    public GemType gemType;
+    //가상 좌표 체계 할당 필요 
+    public Vector2 gemPos; 
+    
+    public void Awake()
     {
-        
+        //TextMeshProUGUI te = GetComponent<TextMeshProUGUI>();
+        GetComponent<Image>().sprite = _sprites[(int)gemType];
+    }
+
+    public void Click()
+    {
+        transform.parent.GetComponent<GemManager>().OnClickGem(this.gameObject);
     }
 }
