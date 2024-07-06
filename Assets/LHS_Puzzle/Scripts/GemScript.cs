@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GemScript : MonoBehaviour
 {
@@ -28,11 +29,18 @@ public class GemScript : MonoBehaviour
     public void Awake()
     {
         //TextMeshProUGUI te = GetComponent<TextMeshProUGUI>();
-        GetComponent<Image>().sprite = _sprites[(int)gemType];
+        //GetComponent<Image>().sprite = _sprites[(int)gemType];
     }
 
     public void Click()
     {
         transform.parent.GetComponent<GemManager>().OnClickGem(this.gameObject);
+    }
+
+    public void GemLand()
+    {
+        gemType = (GemScript.GemType)Random.Range(0, 5); 
+        GetComponent<Image>().sprite = _sprites[(int)gemType];
+        gameObject.name = $"{gemType} Gem"; 
     }
 }

@@ -10,7 +10,7 @@ public class GemManager : MonoBehaviour
     
     public void Awake()
     {
-        Board = GameObject.Find("Board").GetComponent<BoardScript>();
+        //Board = GameObject.Find("Board").GetComponent<BoardScript>();
     }
 
     public void OnClickGem(GameObject go)

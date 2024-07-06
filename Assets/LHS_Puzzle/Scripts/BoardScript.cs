@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BoardScript : MonoBehaviour
 {
-    public Dictionary<Vector2, GameObject> GemDict = new Dictionary<Vector2, GameObject>(); // µñ¼Å·¯³Ê·Î °¡»ó ÁÂÇ¥°è »ý¼º
+    public Dictionary<Vector2, GameObject> GemDict = new Dictionary<Vector2, GameObject>(); // ï¿½ï¿½Å·ï¿½ï¿½Ê·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public List<GameObject> GemLists = new List<GameObject>();
     public GameObject GemPrefab;
-    public Transform board; // ºí·ÏµéÀÌ ¹èÄ¡µÉ ºÎ¸ð ¿ÀºêÁ§Æ®
+    public Transform board; // ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 
     public int Rows = 5;
     public int Cols = 5;
@@ -27,27 +27,26 @@ public class BoardScript : MonoBehaviour
         //RectTransform boardRectTransform = board.GetComponent<RectTransform>();
         //float blockSize = GemPrefab.GetComponent<RectTransform>().sizeDelta.x;
 
-        //// boardÀÇ RectTransformÀ» ±âÁØÀ¸·Î ½ÃÀÛ ÁöÁ¡À» °è»êÇÑ´Ù.
+        //// boardï¿½ï¿½ RectTransformï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         //float startX = -boardRectTransform.rect.width / 2 + blockSize / 2;
         //float startY = boardRectTransform.rect.height / 2 - blockSize / 2;
 
-        // ÀÓÀÇ ÁÂÇ¥ Ã¼°è »ý¼º ¹× µñ¼Å³Ê¸® °ÔÀÓ ¿ÀºêÁ§Æ® ¼Ó¼º ¼³Á¤
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å³Ê¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ó¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         for (int i = Rows - 1; i > -1; i--)
         {
             for(int j = 0; j < Cols; j++)
             {
-                // Àë Å¸ÀÔ ·£´ý ÇÒ´ç
+                // ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
                 GemScript gemInfo = GemPrefab.GetComponent<GemScript>();
-                gemInfo.gemType = (GemScript.GemType)Random.Range(0, 5);
+                //gemInfo.gemType = (GemScript.GemType)Random.Range(0, 5);
                 //Debug.Log((int)gemInfo.gemType);
-                GemPrefab.GetComponent<GemScript>().gemType = gemInfo.gemType;
                 //Debug.Log((int)GemPrefab.GetComponent<GemScript>().gemType);
 
-                // ÀëÀÇ °¡»ó ÁÂÇ¥ Ã¼°è ÇÒ´ç
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ Ã¼ï¿½ï¿½ ï¿½Ò´ï¿½
                 gemInfo.gemPos = new Vector2(i, j);
                 GemPrefab.GetComponent<GemScript>().gemPos = gemInfo.gemPos;
 
-                // ÁÂÇ¥°ª ¹× Àë ¿ÀºêÁ§Æ® µñ¼Å³Ê¸®¿¡ ÁöÁ¤
+                // ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 GemDict.Add(new Vector2(i, j), GemPrefab);
                 Debug.Log(GemDict[new Vector2(i,j)].GetComponent<GemScript>().gemType);
             }
@@ -55,7 +54,7 @@ public class BoardScript : MonoBehaviour
 
         
 
-        // µñ¼Å³Ê¸®¿¡ ÇÒ´çµÈ Å°¿Í °ª¿¡ µû¸¥ ¿ÀºêÁ§Æ® »ý¼º
+        // ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         foreach (var spawnpoint in GemDict) 
         {
             //Debug.Log(spawnpoint.Key);
@@ -64,6 +63,7 @@ public class BoardScript : MonoBehaviour
             Vector2 objectPoint = spawnpoint.Key;
 
             GameObject spawnGem = Instantiate(spawnpoint.Value, board);
+            spawnGem.GetComponent<GemScript>().GemLand(); 
             spawnGem.GetComponent<RectTransform>().anchoredPosition = objectPoint;
 
         }
