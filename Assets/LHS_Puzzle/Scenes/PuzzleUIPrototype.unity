@@ -231,6 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 183109481}
   - component: {fileID: 183109482}
+  - component: {fileID: 183109483}
   m_Layer: 5
   m_Name: Grid
   m_TagString: Untagged
@@ -270,6 +271,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c26fb5273417c49be23cade797ecf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &183109483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183109480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2c7903f035b70741a755eb4f7ae64fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GemLists: []
+  GemPrefab: {fileID: 3414083315573111001, guid: 1afe06ff40e225047a0c1f8b137f377e, type: 3}
+  board: {fileID: 183109481}
+  Rows: 5
+  Cols: 5
 --- !u!1 &260361877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,6 +2240,10 @@ PrefabInstance:
     - target: {fileID: 157646587686478162, guid: 855eee1cf1997b349a32fe221ad07597, type: 3}
       propertyPath: m_Name
       value: GreenTestImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 157646587686478162, guid: 855eee1cf1997b349a32fe221ad07597, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4407012212620443248, guid: 855eee1cf1997b349a32fe221ad07597, type: 3}
       propertyPath: m_Pivot.x
