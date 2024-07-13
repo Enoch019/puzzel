@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BoardScript : MonoBehaviour
 {
     public Dictionary<Vector2, GameObject> GemDict = new Dictionary<Vector2, GameObject>(); // ��ŷ��ʷ� ���� ��ǥ�� ����
-    public List<GameObject> GemLists = new List<GameObject>();
+    public List<GameObject> GemLists = new List<GameObject>(); // Gem 리스트 선언
+    public List<Vector2> TileList = new List<Vector2>(); // 타일 리스트 선언
     public GameObject GemPrefab;
-    public Transform board; // ��ϵ��� ��ġ�� �θ� ������Ʈ
+    //public Transform SpawnStart;
+    public Transform board; // 잼을 스폰시키는 위치(Canvas의 밑배경 부분)
 
     public int Rows = 5;
     public int Cols = 5;
+    public float blockSpacing = 0f; // 블록 간격
 
     void Start()
     {
@@ -24,47 +28,54 @@ public class BoardScript : MonoBehaviour
 
     void SpawnGems()
     {
-        //RectTransform boardRectTransform = board.GetComponent<RectTransform>();
-        //float blockSize = GemPrefab.GetComponent<RectTransform>().sizeDelta.x;
+        // 스폰시키는 위치인 Board의 RectTransform을 사용한다.
+        RectTransform boardRectTransform = board.GetComponent<RectTransform>();
+        float blockSize = GemPrefab.GetComponent<RectTransform>().sizeDelta.x;
 
-        //// board�� RectTransform�� �������� ���� ������ ����Ѵ�.
-        //float startX = -boardRectTransform.rect.width / 2 + blockSize / 2;
-        //float startY = boardRectTransform.rect.height / 2 - blockSize / 2;
+        // board의 RectTransform의 width와 height을 기준으로 시작 지점을 계산한다.
+        float startX = boardRectTransform.rect.width / 10;
+        float startY = boardRectTransform.rect.height / 10;
 
-        // ���� ��ǥ ü�� ���� �� ��ųʸ� ���� ������Ʈ �Ӽ� ����
-        for (int i = Rows - 1; i > -1; i--)
+        for(int i = 0; i< Rows; i++)
         {
             for(int j = 0; j < Cols; j++)
             {
-                // �� Ÿ�� ���� �Ҵ�
-                GemScript gemInfo = GemPrefab.GetComponent<GemScript>();
-                //gemInfo.gemType = (GemScript.GemType)Random.Range(0, 5);
-                //Debug.Log((int)gemInfo.gemType);
-                //Debug.Log((int)GemPrefab.GetComponent<GemScript>().gemType);
-
-                // ���� ���� ��ǥ ü�� �Ҵ�
-                gemInfo.gemPos = new Vector2(i, j);
-                GemPrefab.GetComponent<GemScript>().gemPos = gemInfo.gemPos;
-
-                // ��ǥ�� �� �� ������Ʈ ��ųʸ��� ����
-                GemDict.Add(new Vector2(i, j), GemPrefab);
-                Debug.Log(GemDict[new Vector2(i,j)].GetComponent<GemScript>().gemType);
+                float posX = 5 + (30 * i);
+                float posY = 5 + (30 * j);
+                TileList.Add(new Vector2(posX, posY));
             }
         }
 
-        
+        // 가상 좌표 체계를 정하고 dictionary의 키 값에 집어 넣는다
+        for (int i = 0; i < Rows; i++)
+        {
+            for(int j = 0; j < Cols; j++)
+            {
+                // 잼 프리팹에 있는 GemScript 컴포넌트를 가져온다
+                GemScript gemInfo = GemPrefab.GetComponent<GemScript>();
+                
+                // ���� ���� ��ǥ ü�� �Ҵ�
+                gemInfo.gemPos = new Vector2(i, j);
+                //GemPrefab.GetComponent<GemScript>().gemPos = gemInfo.gemPos;
+
+                // ��ǥ�� �� �� ������Ʈ ��ųʸ��� ����
+                GemDict.Add(new Vector2(i, j), GemPrefab);
+                //Debug.Log(GemDict[new Vector2(i,j)].GetComponent<GemScript>().gemPos);
+            }
+        }
+
+        Debug.Log(boardRectTransform.rect);
+
+        int tileIndex = 0;
 
         // ��ųʸ��� �Ҵ�� Ű�� ���� ���� ������Ʈ ����
         foreach (var spawnpoint in GemDict) 
-        {
-            //Debug.Log(spawnpoint.Key);
-            //GemScript Info = spawnpoint.Value.GetComponent<GemScript>();
-            //Debug.Log((int)Info.gemType);
-            Vector2 objectPoint = spawnpoint.Key;
-
+        {            
             GameObject spawnGem = Instantiate(spawnpoint.Value, board);
-            spawnGem.GetComponent<GemScript>().GemLand(); 
-            spawnGem.GetComponent<RectTransform>().anchoredPosition = objectPoint;
+            spawnGem.GetComponent<GemScript>().GemLand();
+
+            spawnGem.GetComponent<RectTransform>().anchoredPosition = TileList[tileIndex];
+            tileIndex++;
 
         }
     }

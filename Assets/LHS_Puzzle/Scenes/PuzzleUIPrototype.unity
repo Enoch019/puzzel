@@ -254,11 +254,11 @@ RectTransform:
   - {fileID: 140899398}
   m_Father: {fileID: 803343320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -58, y: 57}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -40, y: -40}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &183109482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,10 +284,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GemLists: []
+  TileList: []
   GemPrefab: {fileID: 3414083315573111001, guid: 1afe06ff40e225047a0c1f8b137f377e, type: 3}
   board: {fileID: 183109481}
   Rows: 5
   Cols: 5
+  blockSpacing: 0
 --- !u!1 &260361877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,11 +1030,11 @@ RectTransform:
   - {fileID: 183109481}
   m_Father: {fileID: 1300038410}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35, y: -20}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -10, y: 10}
   m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &803343321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1779,11 +1781,11 @@ RectTransform:
   - {fileID: 757364441}
   m_Father: {fileID: 1355668538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -105}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 236, y: 210}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1300038411
 MonoBehaviour:
   m_ObjectHideFlags: 0
