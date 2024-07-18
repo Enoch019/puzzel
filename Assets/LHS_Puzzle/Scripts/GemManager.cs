@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GemManager : MonoBehaviour
 {
@@ -69,6 +71,7 @@ public class GemManager : MonoBehaviour
     {
         //잼 터트리기
         Debug.Log($"GemClear {roat[0].GetComponent<GemScript>().gemType} , {roat[1].GetComponent<GemScript>().gemType} , {roat[2].GetComponent<GemScript>().gemType} , {roat[3].GetComponent<GemScript>().gemType} , {roat[4].GetComponent<GemScript>().gemType}");
+        DestroyGem();
         roat.Clear();
     }
 
@@ -87,6 +90,14 @@ public class GemManager : MonoBehaviour
         else
         {
             return false; 
+        }
+    }
+
+    public void DestroyGem()
+    {
+        foreach (var gam in roat)
+        {
+            Destroy(gam.gameObject);
         }
     }
 }

@@ -11,7 +11,7 @@ public class BoardScript : MonoBehaviour
     public GameObject GemPrefab;
     //public Transform SpawnStart;
     public Transform board; // 잼을 스폰시키는 위치(Canvas의 밑배경 부분)
-
+    public List<Vector2> vec; 
     public int Rows = 5;
     public int Cols = 5;
     public float blockSpacing = 0f; // 블록 간격
@@ -55,11 +55,11 @@ public class BoardScript : MonoBehaviour
                 GemScript gemInfo = GemPrefab.GetComponent<GemScript>();
                 
                 // ���� ���� ��ǥ ü�� �Ҵ�
-                gemInfo.gemPos = new Vector2(i, j);
+                //vec.Add(new Vector2(i, j));
                 //GemPrefab.GetComponent<GemScript>().gemPos = gemInfo.gemPos;
 
                 // ��ǥ�� �� �� ������Ʈ ��ųʸ��� ����
-                GemDict.Add(new Vector2(i, j), GemPrefab);
+                vec.Add(new Vector2(i, j));
                 //Debug.Log(GemDict[new Vector2(i,j)].GetComponent<GemScript>().gemPos);
             }
         }
@@ -69,12 +69,13 @@ public class BoardScript : MonoBehaviour
         int tileIndex = 0;
 
         // ��ųʸ��� �Ҵ�� Ű�� ���� ���� ������Ʈ ����
-        foreach (var spawnpoint in GemDict) 
+        foreach (var spawnpoint in vec) 
         {            
-            GameObject spawnGem = Instantiate(spawnpoint.Value, board);
+            GameObject spawnGem = Instantiate(GemPrefab, board);
             spawnGem.GetComponent<GemScript>().GemLand();
-
             spawnGem.GetComponent<RectTransform>().anchoredPosition = TileList[tileIndex];
+            spawnGem.GetComponent<GemScript>().gemPos = spawnpoint; 
+            GemDict.Add(spawnpoint , spawnGem);
             tileIndex++;
 
         }
