@@ -24,19 +24,23 @@ public class GemManager : MonoBehaviour
             //첫번째 클릭시
             case 0:
                 roat.Add(go);
+                go.GetComponent<Image>().sprite = go.GetComponent<GemScript>().whenClick; 
                 break;
             //두번째 세번째 네번째 
             case int n when (n == 2 || n == 3 || n == 1):
                 if (CheckOut(go.GetComponent<GemScript>()))
                 {
                     //한칸 차이나는걸 확인후 추가 
+                    go.GetComponent<Image>().sprite = go.GetComponent<GemScript>().whenClick; 
                     roat.Add(go);
                 }
                 else
                 {
-                    //첫번째 클릭으로 간주 
+                    //첫번째 클릭으로 간주
+                    ClearTheGems();
                     roat.Clear(); 
-                    //roat.Add(go);
+                    go.GetComponent<Image>().sprite = go.GetComponent<GemScript>().whenClick; 
+                    roat.Add(go);
                 }
                 break;
             //다섯번째
@@ -44,16 +48,28 @@ public class GemManager : MonoBehaviour
                 if (CheckOut(go.GetComponent<GemScript>()))
                 {
                     roat.Add(go);
+                    go.GetComponent<Image>().sprite = go.GetComponent<GemScript>().whenClick; 
                     GemClear();
                 }
                 else
                 {
+                    ClearTheGems();
                     roat.Clear(); 
                     roat.Add(go);
+                    go.GetComponent<Image>().sprite = go.GetComponent<GemScript>().whenClick; 
                 } 
                 break;
             
         }   
+    }
+
+    public void ClearTheGems()
+    {
+        foreach (var gems in roat)
+        {
+            Debug.Log("Clear");
+            gems.GetComponent<Image>().sprite = gems.GetComponent<GemScript>().whenClickOver; 
+        }
     }
 
     public bool CheckOut(GemScript go)

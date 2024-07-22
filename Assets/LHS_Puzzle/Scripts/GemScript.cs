@@ -22,6 +22,9 @@ public class GemScript : MonoBehaviour
     }
 
     [SerializeField] private List<Sprite> _sprites;
+    [SerializeField] private List<Sprite> _spritesWhenClick;
+    public Sprite whenClick;
+    public Sprite whenClickOver; 
     private Queue<Vector2> pastGemVec = new Queue<Vector2>(5); 
 
     //랜덤값으로 할당 필요 
@@ -47,7 +50,10 @@ public class GemScript : MonoBehaviour
     {
         gemType = (GemScript.GemType)Random.Range(0, 5); 
         GetComponent<Image>().sprite = _sprites[(int)gemType];
-        gameObject.name = $"{gemType} Gem"; 
+        whenClickOver = _sprites[(int)gemType]; 
+        gameObject.name = $"{gemType} Gem";
+        whenClick = _spritesWhenClick[(int)gemType]; 
+        
     }
 
     public void Update()

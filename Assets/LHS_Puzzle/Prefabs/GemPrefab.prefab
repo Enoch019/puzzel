@@ -146,11 +146,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gemName: Test1
+  bs: {fileID: 0}
+  times: 0
   _sprites:
   - {fileID: 21300000, guid: 768b7443dd05b774bac459798313072f, type: 3}
   - {fileID: 21300000, guid: 513d1117c08ffa34eafd836881239202, type: 3}
   - {fileID: 21300000, guid: 4c3253f13571a924d8bb72a470825cd1, type: 3}
   - {fileID: 21300000, guid: 835a898746f228347a66f6556781067e, type: 3}
   - {fileID: 21300000, guid: 7c0cb21aa88e75c4c97293caaed24b12, type: 3}
+  _spritesWhenClick:
+  - {fileID: 21300000, guid: 1926f516178e01648aab646964430f75, type: 3}
+  - {fileID: 21300000, guid: b2f7d77680faed442a374b353b08d8ca, type: 3}
+  - {fileID: 21300000, guid: 2d4896d2134221441b86c88d64e2c2b7, type: 3}
+  - {fileID: 21300000, guid: eeec4eebc9dbd4b49b5c3f3db3f5f771, type: 3}
+  - {fileID: 21300000, guid: 37c20bc1eedd061469bc72213e422cb6, type: 3}
+  whenClick: {fileID: 0}
+  whenClickOver: {fileID: 0}
   gemType: 0
   gemPos: {x: 0, y: 0}
