@@ -9,7 +9,8 @@ using Random = UnityEngine.Random;
 public class GemScript : MonoBehaviour
 {
     [Header("정보")] public string gemName;
-    public BoardScript bs; 
+    public BoardScript bs;
+    public int times=0; 
 
     public enum GemType
     {
@@ -21,6 +22,7 @@ public class GemScript : MonoBehaviour
     }
 
     [SerializeField] private List<Sprite> _sprites;
+    private Queue<Vector2> pastGemVec = new Queue<Vector2>(5); 
 
     //랜덤값으로 할당 필요 
     public GemType gemType;
@@ -61,37 +63,52 @@ public class GemScript : MonoBehaviour
         {
             if (gem.Key.x == gemPos.x && gem.Key.y < gemPos.y)
             {
-                if (gem.Value == null)
+                if (gem.Value == null && gemPos.y != 0)
                 {   
                     Debug.Log(gameObject.name);
-                    Vector2 vec = gameObject.GetComponent<RectTransform>().anchoredPosition;
-                    if(vec.y - 30 >= 0)
-                        vec.y -= 30;
-                    
-                    gameObject.GetComponent<RectTransform>().anchoredPosition = vec;
-                    gemPos.y = gemPos.y - 1; 
+                    times++; 
                     //GameObject A = Instantiate(gameObject);
                     //A.GetComponent<RectTransform>().anchoredPosition = vec;
                     //gemPos = new Vector2();
-                    vecS = true;
-                    vec2 = gem.Key; 
+                    pastGemVec.Enqueue(gem.Key);
                 }
             }
             
         }
-        
-        if (vecS)
+
+        if (times != 0)
         {
-            bs.GemDict.Remove(vec2);
-            //bs.GemDict.Remove(gemPos); 
-            bs.GemDict[gemPos] = null;
-            if (gemPos.y == 0)
+            while (times > 0)
             {
+                bs.GemDict[gemPos] = null;
+                Vector2 vec = gameObject.GetComponent<RectTransform>().anchoredPosition;
+
+                if (vec.y - 30 >= 0)
+                {
+                    vec.y -= 30;
+                }
+
+                if (gemPos.y - 1 > -1)
+                {
+                    if (bs.GemDict[new Vector2(gemPos.x, gemPos.y - 1)] == null)
+                    {
+                        //Debug.Log(gemPos.y);
+                        gemPos.y -= 1; 
+                        //Debug.Log(gemPos.y);
+                        gameObject.GetComponent<RectTransform>().anchoredPosition = vec; 
+                        bs.GemDict[pastGemVec.Dequeue()] = null;
+                        bs.GemDict[gemPos] = gameObject; 
+                    }
+                    else
+                    {
+                        bs.GemDict[gemPos] = gameObject; 
+                    }
+                }
                 
+                times--;
             }
-            bs.GemDict.Add(vec2 , gameObject);
-            //Destroy(gameObject);
-            vecS = false; 
+
+            times = 0;
         }
     }
 }

@@ -8,11 +8,13 @@ using UnityEngine.EventSystems;
 public class GemManager : MonoBehaviour
 {
     private BoardScript Board;
-    private List<GameObject> roat = new List<GameObject>(5); 
+    private List<GameObject> roat = new List<GameObject>(5);
+    public List<List<GemScript>> GemQ = new List<List<GemScript>>(); 
     
     public void Awake()
     {
         //Board = GameObject.Find("Board").GetComponent<BoardScript>();
+        
     }
 
     public void OnClickGem(GameObject go)
@@ -70,6 +72,7 @@ public class GemManager : MonoBehaviour
     public void GemClear()
     {
         //잼 터트리기
+        //gameObject.GetComponent<BoardScript>().CheakGem();
         Debug.Log($"GemClear {roat[0].GetComponent<GemScript>().gemType} , {roat[1].GetComponent<GemScript>().gemType} , {roat[2].GetComponent<GemScript>().gemType} , {roat[3].GetComponent<GemScript>().gemType} , {roat[4].GetComponent<GemScript>().gemType}");
         DestroyGem();
         roat.Clear();
@@ -95,9 +98,42 @@ public class GemManager : MonoBehaviour
 
     public void DestroyGem()
     {
+        List<GameObject> vec = new List<GameObject>(5); 
+        bool[] A = new []{ true , true , true , true , true }; 
         foreach (var gam in roat)
         {
-            Destroy(gam.gameObject);
+            if (gam.GetComponent<GemScript>().gemPos.x == 0 && A[0])
+            {
+                vec.Add(gameObject.GetComponent<BoardScript>().GemDict[new Vector2(gam.GetComponent<GemScript>().gemPos.x , gam.GetComponent<GemScript>().gemPos.y + 1)]);
+                A[0] = false; 
+            }
+            else if (gam.GetComponent<GemScript>().gemPos.x == 1 && A[1])
+            {
+                vec.Add(gameObject.GetComponent<BoardScript>().GemDict[new Vector2(gam.GetComponent<GemScript>().gemPos.x , gam.GetComponent<GemScript>().gemPos.y + 1)]);
+                A[1] = false; 
+            }
+            else if (gam.GetComponent<GemScript>().gemPos.x == 2 && A[2])
+            {
+                vec.Add(gameObject.GetComponent<BoardScript>().GemDict[new Vector2(gam.GetComponent<GemScript>().gemPos.x , gam.GetComponent<GemScript>().gemPos.y + 1)]);
+                A[2] = false; 
+            }
+            else if (gam.GetComponent<GemScript>().gemPos.x == 3 && A[3])
+            {
+                vec.Add(gameObject.GetComponent<BoardScript>().GemDict[new Vector2(gam.GetComponent<GemScript>().gemPos.x , gam.GetComponent<GemScript>().gemPos.y + 1)]);
+                A[3] = false; 
+            }
+            else if (gam.GetComponent<GemScript>().gemPos.x == 4 && A[4])
+            {
+                vec.Add(gameObject.GetComponent<BoardScript>().GemDict[new Vector2(gam.GetComponent<GemScript>().gemPos.x , gam.GetComponent<GemScript>().gemPos.y + 1)]);
+                A[4] = false;
+            }
+            
+            Destroy(gam);
+        }
+        
+        foreach (var gaem in vec)
+        {
+            //gaem.GetComponent<GemScript>().Trigger();
         }
     }
 }

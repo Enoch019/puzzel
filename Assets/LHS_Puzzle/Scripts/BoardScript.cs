@@ -23,7 +23,41 @@ public class BoardScript : MonoBehaviour
 
     void Update()
     {
+         CheakGem();
+    }
 
+    public void CheakGem()
+    {
+        List<Vector2> emptyPositions = new List<Vector2>();
+        List<int> fl = new List<int>(5);
+        int A = 0; 
+        
+        foreach (var gem in GemDict)
+        {
+            
+            if (gem.Key.y == 4 && gem.Value == null)
+            {
+                emptyPositions.Add(gem.Key);
+                fl.Add(A);
+            }
+
+            A++; 
+        }
+
+        A = 0; 
+
+        foreach (var pos in emptyPositions)
+        {
+            GameObject spawnGem = Instantiate(GemPrefab, board);
+            spawnGem.GetComponent<GemScript>().GemLand();
+            spawnGem.name = "new"; 
+            spawnGem.GetComponent<RectTransform>().anchoredPosition = TileList[fl[A]];
+            GemDict[pos] = spawnGem;
+            spawnGem.GetComponent<GemScript>().gemPos = pos; 
+            A++; 
+        }
+
+        emptyPositions.Clear(); 
     }
 
     void SpawnGems()
