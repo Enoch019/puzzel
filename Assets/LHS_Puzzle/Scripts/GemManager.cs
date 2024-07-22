@@ -36,7 +36,7 @@ public class GemManager : MonoBehaviour
                 {
                     //첫번째 클릭으로 간주 
                     roat.Clear(); 
-                    roat.Add(go);
+                    //roat.Add(go);
                 }
                 break;
             //다섯번째
@@ -59,12 +59,14 @@ public class GemManager : MonoBehaviour
     public bool CheckOut(GemScript go)
     {
         GemScript go2 = roat[^1].gameObject.GetComponent<GemScript>(); 
-        if(ComparInt(go.gemPos , go2.gemPos))
+        // 'ㅡ' 과 'ㅣ' 모양이 나올 수 있게 처음 선택된 잼과 다음 선택된 잼의 pox가 x나 y 값이 같게 하는 조건이 있어야 한다.
+        if(ComparInt(go.gemPos , go2.gemPos) && ((go.gemPos.x == go2.gemPos.x) && (go.gemPos.y != go2.gemPos.y) || (go.gemPos.x != go2.gemPos.x) && go.gemPos.y == go2.gemPos.y))
         {
             return true; 
         }
         else
         {
+            Debug.Log("not Match Pos X Or Y");
             return false; 
         }
     }
