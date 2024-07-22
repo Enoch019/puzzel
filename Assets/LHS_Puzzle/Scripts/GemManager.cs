@@ -102,32 +102,6 @@ public class GemManager : MonoBehaviour
         bool[] A = new []{ true , true , true , true , true }; 
         foreach (var gam in roat)
         {
-            if (gam.GetComponent<GemScript>().gemPos.x == 0 && A[0])
-            {
-                vec.Add(gameObject.GetComponent<BoardScript>().GemDict[new Vector2(gam.GetComponent<GemScript>().gemPos.x , gam.GetComponent<GemScript>().gemPos.y + 1)]);
-                A[0] = false; 
-            }
-            else if (gam.GetComponent<GemScript>().gemPos.x == 1 && A[1])
-            {
-                vec.Add(gameObject.GetComponent<BoardScript>().GemDict[new Vector2(gam.GetComponent<GemScript>().gemPos.x , gam.GetComponent<GemScript>().gemPos.y + 1)]);
-                A[1] = false; 
-            }
-            else if (gam.GetComponent<GemScript>().gemPos.x == 2 && A[2])
-            {
-                vec.Add(gameObject.GetComponent<BoardScript>().GemDict[new Vector2(gam.GetComponent<GemScript>().gemPos.x , gam.GetComponent<GemScript>().gemPos.y + 1)]);
-                A[2] = false; 
-            }
-            else if (gam.GetComponent<GemScript>().gemPos.x == 3 && A[3])
-            {
-                vec.Add(gameObject.GetComponent<BoardScript>().GemDict[new Vector2(gam.GetComponent<GemScript>().gemPos.x , gam.GetComponent<GemScript>().gemPos.y + 1)]);
-                A[3] = false; 
-            }
-            else if (gam.GetComponent<GemScript>().gemPos.x == 4 && A[4])
-            {
-                vec.Add(gameObject.GetComponent<BoardScript>().GemDict[new Vector2(gam.GetComponent<GemScript>().gemPos.x , gam.GetComponent<GemScript>().gemPos.y + 1)]);
-                A[4] = false;
-            }
-            
             Destroy(gam);
         }
         
